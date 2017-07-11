@@ -22,11 +22,10 @@
       <ion-input type="text" placeholder="Role Name" [(ngModel)]="title"></ion-input>
     </ion-item>
     <ion-item id="addRole-range2">
-      <ion-range min="1" max="3" step="1" color="positive" value="1" [(ngModel)]="priority">
-        <ion-label range-left>
-          Priority
-        </ion-label>
-      </ion-range>
+      <ion-label>Priority</ion-label>
+      <ion-select [(ngModel)]="selectedPriority">
+        <ion-option *ngFor="let priority of priorities" value="{{priority}}">{{priority}}</ion-option>
+      </ion-select>
     </ion-item>
   </ion-list>
 </ion-content>

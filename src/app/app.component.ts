@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
+import {DataProvider} from "../providers/data/data";
 
 @Component({
   templateUrl: 'app.html'

@@ -17,16 +17,21 @@
   <ion-list>
     <ion-item id="addGoal-input6">
       <ion-label>
-        Input
+        Title
       </ion-label>
-      <ion-input type="text" placeholder="Goal  Name" [(ngModel)]="title"></ion-input>
+      <ion-input type="text" placeholder="Goal Name" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Role</ion-label>
+      <ion-select [(ngModel)]="selectedRole">
+        <ion-option *ngFor="let role of roles" value="{{role.title}}">{{role.title}}</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item id="addGoal-range1">
-      <ion-range min="1" max="3" step="1" color="balanced" value="1" [(ngModel)]="priority">
-        <ion-label range-left>
-          Goal Importance
-        </ion-label>
-      </ion-range>
+      <ion-label>Priority</ion-label>
+      <ion-select [(ngModel)]="selectedPriority">
+        <ion-option *ngFor="let priority of priorities" value="{{priority}}">{{priority}}</ion-option>
+      </ion-select>
     </ion-item>
   </ion-list>
 </ion-content>

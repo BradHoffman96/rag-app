@@ -11,6 +11,8 @@ export class AddRolePage {
 
   title;
   priority;
+  selectedPriority;
+  public priorities = ['High', 'Med', 'Low'];
 
   constructor(public navCtrl: NavController, public view: ViewController) {
   }
@@ -18,7 +20,7 @@ export class AddRolePage {
   addRole() {
     let newItem = {
       title: this.title,
-      priority: this.title
+      priority: this.selectedPriority
     };
 
     this.view.dismiss(newItem);

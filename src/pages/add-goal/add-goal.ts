@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController, ViewController} from 'ionic-angular';
+import {DataProvider} from "../../providers/data/data";
 
 @Component({
   selector: 'page-add-goal',
@@ -11,14 +12,24 @@ export class AddGoalPage {
 
   title;
   priority;
+  selectedRole;
+  selectedPriority;
+  public roles = [];
+  public priorities = ['High', 'Med', 'Low'];
 
-  constructor(public navCtrl: NavController, public view: ViewController) {
+  constructor(public navCtrl: NavController, public view: ViewController, public dataService: DataProvider) {
+    this.dataService.getRoles().then((roles) => {
+      if (roles) {
+        this.roles = JSON.parse(roles);
+      }
+    });
   }
 
   addGoal() {
     let newItem = {
       title: this.title,
-      priority: this.priority
+      role: this.selectedRole,
+      priority: this.selectedPriority
     }
 
     this.view.dismiss(newItem);
