@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="close()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      Add Goal
+    </ion-title>
+    <ion-buttons end>
+      <button (click)="addGoal()" ion-button>
+        Add Goal
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page7">
+  <ion-list>
+    <ion-item id="addGoal-input6">
+      <ion-label>
+        Input
+      </ion-label>
+      <ion-input type="text" placeholder="Goal  Name" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item id="addGoal-range1">
+      <ion-range min="1" max="3" step="1" color="balanced" value="1" [(ngModel)]="priority">
+        <ion-label range-left>
+          Goal Importance
+        </ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+</ion-content>

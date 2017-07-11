@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Roles
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addRole()" icon-only>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page2">
+  <ion-list id="roles-list1">
+    <ion-item-sliding *ngFor="let role of roles">
+      <ion-item>
+        {{role.title}}
+      </ion-item>
+      <ion-item-options side="Right">
+        <button ion-button color="danger" (click)="deleteRole(role)">
+          Delete
+        </button>
+        <!--<button ion-button color="secondary">-->
+        <!--<ion-icon name="call"></ion-icon>-->
+        <!--Call-->
+        <!--</button>-->
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

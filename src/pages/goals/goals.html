@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Goals
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addGoal()" icon-only>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page3">
+  <ion-list id="goals-list2">
+    <ion-item-sliding *ngFor="let goal of goals">
+      <ion-item color="none" id="goals-list-item7" >
+        {{goal.title}}
+      </ion-item>
+      <ion-item-options side="Right">
+        <button ion-button color="danger" (click)="deleteGoal(goal)">
+          Delete
+        </button>
+        <!--<button ion-button color="secondary">-->
+          <!--<ion-icon name="call"></ion-icon>-->
+          <!--Call-->
+        <!--</button>-->
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
