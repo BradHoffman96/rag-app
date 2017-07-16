@@ -26,6 +26,7 @@ export class RolesPage {
 
     addRoleModal.onDidDismiss((item) => {
       if (item) {
+        console.log(item);
         this.roles.push(item);
         this.dataService.saveRoles(this.roles);
       }

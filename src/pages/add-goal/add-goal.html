@@ -27,10 +27,16 @@
         <ion-option *ngFor="let role of roles" value="{{role.title}}">{{role.title}}</ion-option>
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-label>Due Date</ion-label>
+      <ion-datetime displayFormat="MMM D, YYYY" [(ngModel)]="selectedDueDate"></ion-datetime>
+    </ion-item>
     <ion-item id="addGoal-range1">
       <ion-label>Priority</ion-label>
       <ion-select [(ngModel)]="selectedPriority">
-        <ion-option *ngFor="let priority of priorities" value="{{priority}}">{{priority}}</ion-option>
+        <ion-option value=1>Low</ion-option>
+        <ion-option value=2>Med</ion-option>
+        <ion-option value=3>High</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>

@@ -13,6 +13,7 @@ export class DataProvider {
 
   constructor(public storage: Storage) {
     console.log('Hello DataProvider Provider');
+    //this.storage.clear();
   }
 
   saveRoles(roles) {

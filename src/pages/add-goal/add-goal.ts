@@ -14,6 +14,7 @@ export class AddGoalPage {
   priority;
   selectedRole;
   selectedPriority;
+  selectedDueDate;
   public roles = [];
   public priorities = ['High', 'Med', 'Low'];
 
@@ -29,7 +30,8 @@ export class AddGoalPage {
     let newItem = {
       title: this.title,
       role: this.selectedRole,
-      priority: this.selectedPriority
+      dueDate: this.selectedDueDate,
+      priority: parseInt(this.selectedPriority, 10)
     }
 
     this.view.dismiss(newItem);
