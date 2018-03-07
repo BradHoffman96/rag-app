@@ -13,6 +13,7 @@ export class TabsControllerPage {
   // should be each tab's root Page
   tab1Root: any = RolesPage;
   tab2Root: any = GoalsPage;
+  tab3Root: any = ProfilePage;
   constructor(public navCtrl: NavController) {
   }
   
