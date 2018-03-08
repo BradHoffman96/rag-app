@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {ModalController} from 'ionic-angular';
 import {AddGoalPage} from "../add-goal/add-goal";
 import {DataProvider} from "../../providers/data/data";
+import { AngularFireAuth } from "angularfire2/auth";
+import { Observable } from "rxjs/observable";
 
 @Component({
   selector: 'page-goals',
@@ -11,56 +13,29 @@ export class GoalsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
 
-  public goals = [];
+  goals: Observable<any[]>
+
   public roles = [];
   public sortedGoals = [];
 
-  constructor(public modalCtrl: ModalController, public dataService: DataProvider) {
-    // this.dataService.getGoals().then((goals) => {
-    //   if (goals) {
-    //     this.goals = JSON.parse(goals);
-    //   }
-    // });
-    // this.dataService.getRoles().then((roles) => {
-    //   this.roles = JSON.parse(roles);
-    // })
+  constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.goals = this.dataService.getGoals();
+      }
+    })
   }
 
   addGoal() {
-    // let addGoalModal = this.modalCtrl.create(AddGoalPage, { userId: 8675309 });
+    let addGoalModal = this.modalCtrl.create(AddGoalPage);
 
-    // addGoalModal.onDidDismiss((item) => {
-    //   console.log(item);
-    //   item.score = this.score(item);
+    addGoalModal.onDidDismiss((goal) => {
+      if (goal.priority && goal.title && goal.dueDate && goal.role) {
+        this.dataService.saveGoal(goal);
+      }
+    });
 
-    //   if (this.goals.length == 0) {
-    //     this.goals.push(item);
-    //   } else {
-    //     for (var i = 0; i < this.goals.length; i++) {
-    //       if (this.goals[i].score > item.score) {
-    //         console.log("item score is less than " + i + " score" );
-    //         if (this.goals.length - 1 == i) {
-    //           this.goals.push(item);
-    //           break;
-    //         }
-    //       } else if (this.goals[i].score < item.score) {
-    //         console.log("item score is greater than " + i + " score");
-    //         if (i == 0) {
-    //           this.goals.splice(0, 0, item);
-    //           break;
-    //         } else {
-    //           this.goals.splice(i, 0, item);
-    //           break;
-    //         }
-
-    //       }
-    //     }
-    //   }
-
-    //   this.dataService.saveGoals(this.goals);
-    // });
-
-    // addGoalModal.present();
+    addGoalModal.present();
   }
 
   deleteGoal(goal) {

@@ -19,24 +19,22 @@
       <ion-label>
         Title
       </ion-label>
-      <ion-input type="text" placeholder="Goal Name" [(ngModel)]="title"></ion-input>
+      <ion-input type="text" placeholder="Goal Name" [(ngModel)]="goal.title"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Role</ion-label>
-      <ion-select [(ngModel)]="selectedRole">
-        <ion-option *ngFor="let role of roles" value="{{role.title}}">{{role.title}}</ion-option>
+      <ion-select [(ngModel)]="goal.role">
+        <ion-option *ngFor="let role of roles | async" value="{{role.title}}">{{role.title}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Due Date</ion-label>
-      <ion-datetime displayFormat="MMM D, YYYY" [(ngModel)]="selectedDueDate"></ion-datetime>
+      <ion-datetime displayFormat="MMM D, YYYY" [(ngModel)]="goal.dueDate"></ion-datetime>
     </ion-item>
     <ion-item id="addGoal-range1">
       <ion-label>Priority</ion-label>
       <ion-select [(ngModel)]="selectedPriority">
-        <ion-option value=1>Low</ion-option>
-        <ion-option value=2>Med</ion-option>
-        <ion-option value=3>High</ion-option>
+        <ion-option *ngFor="let priority of priorities" value="{{priority.value}}">{{priority.key}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>

@@ -12,7 +12,7 @@
 </ion-header>
 <ion-content padding id="page3">
   <ion-list id="goals-list2">
-    <ion-item-sliding *ngFor="let goal of goals">
+    <ion-item-sliding *ngFor="let goal of goals | async">
       <ion-item color="none">
         {{goal.title}}
       </ion-item>

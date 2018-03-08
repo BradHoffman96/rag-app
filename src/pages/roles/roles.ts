@@ -21,9 +21,6 @@ export class RolesPage {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.roles = this.dataService.getRoles();
-        this.roles.forEach(role => {
-          console.log(role);
-        })
       }
     })
   }
@@ -34,7 +31,6 @@ export class RolesPage {
     addRoleModal.onDidDismiss((role) => {
       if (role.title && role.priority) {
         this.dataService.saveRole(role);
-        this.dataService.getRoles();
       }
     });
 

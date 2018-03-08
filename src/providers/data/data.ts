@@ -51,9 +51,10 @@ export class DataProvider {
     this.rolesList.remove(role.id);
   }
 
-  saveGoal(goals) {
-    let newGoals = JSON.stringify(goals);
-    this.storage.set('goals', newGoals);
+  saveGoal(goal) {
+    const ref = this.goalsList.push({});
+    goal.id = ref.key;
+    ref.set(goal);
   }
 
   getGoals() {
