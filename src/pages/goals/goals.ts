@@ -39,12 +39,9 @@ export class GoalsPage {
   }
 
   deleteGoal(goal) {
-    // let index = this.goals.indexOf(goal);
-
-    // if (index >= 0) {
-    //   this.goals.splice(index, 1);
-    //   this.dataService.saveGoals(this.goals);
-    // }
+    console.log("DELETE GOAL");
+    console.log(goal);
+    this.dataService.deleteGoal(goal);
   }
 
   score(goal) {

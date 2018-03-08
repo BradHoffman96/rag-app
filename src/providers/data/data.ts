@@ -65,4 +65,8 @@ export class DataProvider {
     return this.goals;
   }
 
+  deleteGoal (goal: Goal) {
+    this.goalsList.remove(goal.id);
+  }
+
 }

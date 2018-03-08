@@ -44,10 +44,6 @@ export class RolesPage {
   deleteRole(role) {
     console.log(role);
     this.dataService.deleteRole(role);
-    // let index = this.roles.indexOf(role);
-
-    // this.roles.splice(index, 1);
-    // this.dataService.saveRoles(this.roles);
   }
 
 }
