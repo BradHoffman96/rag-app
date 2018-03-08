@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController, ViewController} from 'ionic-angular';
+import { Role } from "../../shared/models/role";
 
 @Component({
   selector: 'page-add-role',
@@ -9,8 +10,6 @@ export class AddRolePage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
 
-  title;
-  priority;
   selectedPriority;
   public priorities = [{
     key: "Low",
@@ -23,16 +22,15 @@ export class AddRolePage {
     value: 3
   }];
 
+  role = {} as Role;
+
   constructor(public navCtrl: NavController, public view: ViewController) {
   }
 
   addRole() {
-    let newItem = {
-      title: this.title,
-      priority: parseInt(this.selectedPriority, 10)
-    };
+    this.role.priority = parseInt(this.selectedPriority, 10)
 
-    this.view.dismiss(newItem);
+    this.view.dismiss(this.role);
   }
 
   close() {

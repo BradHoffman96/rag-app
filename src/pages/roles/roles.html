@@ -12,7 +12,7 @@
 </ion-header>
 <ion-content padding id="page2">
   <ion-list id="roles-list1">
-    <ion-item-sliding *ngFor="let role of roles">
+    <ion-item-sliding *ngFor="let role of roles | async">
       <ion-item>
         {{role.title}}
       </ion-item>

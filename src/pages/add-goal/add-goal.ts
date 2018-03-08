@@ -19,11 +19,11 @@ export class AddGoalPage {
   public priorities = ['High', 'Med', 'Low'];
 
   constructor(public navCtrl: NavController, public view: ViewController, public dataService: DataProvider) {
-    this.dataService.getRoles().then((roles) => {
-      if (roles) {
-        this.roles = JSON.parse(roles);
-      }
-    });
+    // this.dataService.getRoles().then((roles) => {
+    //   if (roles) {
+    //     this.roles = JSON.parse(roles);
+    //   }
+    // });
   }
 
   addGoal() {
