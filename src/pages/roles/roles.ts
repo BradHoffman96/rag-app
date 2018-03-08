@@ -5,6 +5,7 @@ import {DataProvider} from "../../providers/data/data";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/observable';
+import { Role } from '../../shared/models/role';
 
 @Component({
   selector: 'page-roles',
@@ -20,14 +21,11 @@ export class RolesPage {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.roles = this.dataService.getRoles();
+        this.roles.forEach(role => {
+          console.log(role);
+        })
       }
     })
-    console.log(this.roles);
-    // this.dataService.getRoles().then((roles) => {
-    //   if (roles) {
-    //     this.roles = JSON.parse(roles);
-    //   }
-    // });
   }
 
   addRole() {
@@ -35,14 +33,12 @@ export class RolesPage {
 
     addRoleModal.onDidDismiss((role) => {
       if (role.title && role.priority) {
-        console.log(role);
-        //this.roles.push(item);
         this.dataService.saveRole(role);
         this.dataService.getRoles();
       }
     });
 
-    addRoleModal.present();
+    addRoleModal.present()
   }
 
   viewRole(role) {
@@ -50,6 +46,8 @@ export class RolesPage {
   }
 
   deleteRole(role) {
+    console.log(role);
+    this.dataService.deleteRole(role);
     // let index = this.roles.indexOf(role);
 
     // this.roles.splice(index, 1);

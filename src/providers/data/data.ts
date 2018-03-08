@@ -34,7 +34,9 @@ export class DataProvider {
   }
 
   saveRole(role: Role) {
-    this.rolesList.push(role);
+    const ref = this.rolesList.push({});
+    role.id = ref.key;
+    ref.set(role);
   }
 
   getRoles() {
@@ -43,6 +45,10 @@ export class DataProvider {
     this.roles = this.rolesList.valueChanges();
 
     return this.roles;
+  }
+  
+  deleteRole(role: Role) {
+    this.rolesList.remove(role.id);
   }
 
   saveGoal(goals) {
