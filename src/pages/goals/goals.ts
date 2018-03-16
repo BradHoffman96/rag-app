@@ -3,7 +3,7 @@ import {ModalController} from 'ionic-angular';
 import {AddGoalPage} from "../add-goal/add-goal";
 import {DataProvider} from "../../providers/data/data";
 import { AngularFireAuth } from "angularfire2/auth";
-import { Observable } from "rxjs/observable";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'page-goals',

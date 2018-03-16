@@ -4,7 +4,7 @@ import {AddRolePage} from "../add-role/add-role";
 import {DataProvider} from "../../providers/data/data";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { Role } from '../../shared/models/role';
 
 @Component({
@@ -26,7 +26,7 @@ export class RolesPage {
   }
 
   addRole() {
-    let addRoleModal = this.modalCtrl.create(AddRolePage); 
+    let addRoleModal = this.modalCtrl.create(AddRolePage);
 
     addRoleModal.onDidDismiss((role) => {
       if (role.title && role.priority) {

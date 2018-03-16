@@ -5,7 +5,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import 'rxjs/add/operator/map';
 import { Goal } from "../../shared/models/goal";
 import { Role } from "../../shared/models/role";
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 /*
   Generated class for the DataProvider provider.
 
@@ -46,7 +46,7 @@ export class DataProvider {
 
     return this.roles;
   }
-  
+
   deleteRole(role: Role) {
     this.rolesList.remove(role.id);
   }

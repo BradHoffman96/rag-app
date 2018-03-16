@@ -3,7 +3,7 @@ import {NavController, ViewController} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 import { Goal } from '../../shared/models/goal';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-add-goal',
