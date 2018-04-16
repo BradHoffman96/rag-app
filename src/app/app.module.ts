@@ -20,6 +20,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from '../environments/environments';
+import { RegistrationPage } from '../pages/registration/registration';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { firebaseConfig } from '../environments/environments';
     LoginPage,
     SignupPage,
     AddGoalPage,
-    AddRolePage
+    AddRolePage,
+    RegistrationPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { firebaseConfig } from '../environments/environments';
     LoginPage,
     SignupPage,
     AddGoalPage,
-    AddRolePage
+    AddRolePage,
+    RegistrationPage
   ],
   providers: [
     StatusBar,
