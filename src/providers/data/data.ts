@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { Goal } from "../../shared/models/goal";
 import { Role } from "../../shared/models/role";
 import { Observable } from 'rxjs/observable';
+import { User } from '../../shared/models/user';
 /*
   Generated class for the DataProvider provider.
 
@@ -20,6 +21,8 @@ export class DataProvider {
   rolesList: AngularFireList<any>;
   goals: Observable<any[]>;
   goalsList: AngularFireList<any>;
+  user: Observable<any[]>;
+  userDetails: AngularFireList<any>;
   userId: string;
 
   constructor(public storage: Storage, private afAuth: AngularFireAuth, public afDb: AngularFireDatabase) {
@@ -65,8 +68,20 @@ export class DataProvider {
     return this.goals;
   }
 
-  deleteGoal (goal: Goal) {
+  deleteGoal(goal: Goal) {
     this.goalsList.remove(goal.id);
+  }
+
+  addUser(user: User) {
+    this.userDetails.push(user.name);
+  }
+
+  getUser(user: User) {
+    if (!this.userId) return;
+    this.userDetails = this.afDb.list(`/users/${this.userId}`);
+    this.user = this.userDetails.valueChanges();
+
+    return this.user;
   }
 
 }
