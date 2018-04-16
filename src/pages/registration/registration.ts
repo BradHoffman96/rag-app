@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../shared/models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TabsControllerPage } from '../tabs-controller/tabs-controller';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the RegistrationPage page.
@@ -19,7 +20,7 @@ export class RegistrationPage {
 
   user = {} as User;
 
-  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public dataService: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -30,7 +31,9 @@ export class RegistrationPage {
       try {
         const result = this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
         if (result) {
-          this.navCtrl.push(TabsControllerPage);
+          this.navCtrl.push(TabsControllerPage, {
+            name: user.name
+          });
         }
       } catch (e) {
         console.log(e);

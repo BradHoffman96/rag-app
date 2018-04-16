@@ -73,6 +73,11 @@ export class DataProvider {
   }
 
   addUser(user: User) {
+    if (!this.userId) {
+      console.log("User is not logged in");
+    }
+    this.userDetails = this.afDb.list(`/users/${this.userId}`);
+    this.user = this.userDetails.valueChanges();
     this.userDetails.push(user.name);
   }
 
