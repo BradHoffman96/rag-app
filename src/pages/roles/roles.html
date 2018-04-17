@@ -13,19 +13,18 @@
 <ion-content padding id="page2">
   <ion-list class="accordion-list">
     <ion-list-header *ngFor="let role of roles | async" no-lines no-padding>
-      <!-- Toggle Button -->
-      <button ion-item (click)="toggleSection(role)" detail-none [ngClass]="{'section-active': role.open, 'section': !role.open}">
-        <ion-icon item-left name="arrow-forward" *ngIf="!role.open" ></ion-icon>
-        <ion-icon item-left name="close" *ngIf="role.open"></ion-icon>
-        <ion-icon item-right name="trash" *ngIf="role.open" color="dark" padding-right></ion-icon>
-        <ion-icon item-right name="create" *ngIf="role.open" color="dark"></ion-icon>
-        <ion-icon item-right name="add" *ngIf="role.open" color="dark" padding-left></ion-icon>
+      <ion-item  detail-none [ngClass]="{'section-active': role.open, 'section': !role.open}" (click)="getGoals(role)">
+        <ion-icon item-left name="arrow-forward" *ngIf="!role.open" (click)="toggleSection(role)"></ion-icon>
+        <ion-icon item-left name="close" *ngIf="role.open" (click)="toggleSection(role)"></ion-icon>
+        <ion-icon item-right name="trash" *ngIf="role.open" color="dark" (click)="deleteRole(role)" padding-right></ion-icon>
+        <ion-icon item-right name="create" *ngIf="role.open" color="dark" (click)="editRole(role)"></ion-icon>
+        <ion-icon item-right name="add" *ngIf="role.open" color="dark" (click)="addGoal()" padding-left></ion-icon>
         {{ role.title }}
-      </button>
+      </ion-item>
  
       <ion-list *ngIf="role.open" no-lines>
         <!-- Second Level -->
-        <ion-list-header *ngFor="let goal of role.goals" no-padding>
+        <ion-list-header *ngFor="let goal of goals | async" no-padding>
  
           <!-- Direct Add Button as Fallback -->
           <ion-item ion-item detail-none class="child-item" text-wrap>

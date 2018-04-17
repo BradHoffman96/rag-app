@@ -36,7 +36,7 @@ export class DataProvider {
     //this.storage.clear();
   }
 
-  saveRole(role: Role) {
+  createRole(role: Role) {
     const ref = this.rolesList.push({});
     role.id = ref.key;
     ref.set(role);
@@ -44,7 +44,7 @@ export class DataProvider {
 
   getRoles() {
     if (!this.userId) return;
-    this.rolesList = this.afDb.list(`/roles/${this.userId}`);
+    this.rolesList = this.afDb.list(`${this.userId}/roles`);
     this.roles = this.rolesList.valueChanges();
 
     return this.roles;
@@ -60,9 +60,9 @@ export class DataProvider {
     ref.set(goal);
   }
 
-  getGoals() {
+  getGoals(role: Role) {
     if (!this.userId) return;
-    this.goalsList = this.afDb.list(`/goals/${this.userId}`);
+    this.goalsList = this.afDb.list(`${this.userId}/roles/${role.id}/goals`);
     this.goals = this.goalsList.valueChanges();
 
     return this.goals;
@@ -70,23 +70,6 @@ export class DataProvider {
 
   deleteGoal(goal: Goal) {
     this.goalsList.remove(goal.id);
-  }
-
-  addUser(user: User) {
-    if (!this.userId) {
-      console.log("User is not logged in");
-    }
-    this.userDetails = this.afDb.list(`/users/${this.userId}`);
-    this.user = this.userDetails.valueChanges();
-    this.userDetails.push(user.name);
-  }
-
-  getUser(user: User) {
-    if (!this.userId) return;
-    this.userDetails = this.afDb.list(`/users/${this.userId}`);
-    this.user = this.userDetails.valueChanges();
-
-    return this.user;
   }
 
 }

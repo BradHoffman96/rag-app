@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/observable';
 import { Role } from '../../shared/models/role';
+import { AddGoalPage } from '../add-goal/add-goal';
 
 @Component({
   selector: 'page-roles',
@@ -16,6 +17,7 @@ export class RolesPage {
   // should be each tab's root Page
 
   roles: Observable<any[]>;
+  goals: Observable<any[]>;
 
   constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth, private afDb: AngularFireDatabase) {
     this.afAuth.authState.subscribe(user => {
@@ -30,7 +32,7 @@ export class RolesPage {
 
     addRoleModal.onDidDismiss((role) => {
       if (role) {
-        this.dataService.saveRole(role);
+        this.dataService.createRole(role);
       }
     });
 
@@ -44,6 +46,22 @@ export class RolesPage {
   deleteRole(role) {
     console.log(role);
     this.dataService.deleteRole(role);
+  }
+
+  addGoal() {
+    let addGoalModal = this.modalCtrl.create(AddGoalPage);
+
+    addGoalModal.onDidDismiss((goal) => {
+      if (goal) {
+        this.dataService.saveGoal(goal);
+      }
+    });
+
+    addGoalModal.present();
+  }
+  
+  getGoals(role: Role) {
+    this.goals = this.dataService.getGoals(role);
   }
 
   toggleSection(role) {

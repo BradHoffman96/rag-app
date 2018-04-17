@@ -21,7 +21,7 @@ export class GoalsPage {
   constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.goals = this.dataService.getGoals();
+        //this.goals = this.dataService.getGoals();
       }
     })
   }
