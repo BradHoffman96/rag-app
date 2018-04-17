@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, ViewController} from 'ionic-angular';
+import {NavController, ViewController, NavParams} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 import { Goal } from '../../shared/models/goal';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -16,7 +16,6 @@ export class AddGoalPage {
   goal = {} as Goal;
   roles: Observable<any[]>;
 
-  selectedPriority;
   public priorities = [{
     key: "Low",
     value: 1
@@ -28,17 +27,19 @@ export class AddGoalPage {
     value: 3
   }];
 
-  constructor(public navCtrl: NavController, public view: ViewController, public dataService: DataProvider, private afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public view: ViewController, public dataService: DataProvider, private afAuth: AngularFireAuth, private navParams: NavParams) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.roles = this.dataService.getRoles();
       }
-    })
+    });
+
+    if (this.navParams.get('goal')) {
+      this.goal = this.navParams.get('goal');
+    }
   }
 
   addGoal() {
-    this.goal.priority = parseInt(this.selectedPriority, 10);
-
     this.view.dismiss(this.goal);
   }
 

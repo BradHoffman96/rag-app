@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/observable';
 import { Role } from '../../shared/models/role';
+import { Goal } from '../../shared/models/goal';
 import { AddGoalPage } from '../add-goal/add-goal';
 
 @Component({
@@ -36,7 +37,7 @@ export class RolesPage {
       }
     });
 
-    addRoleModal.present()
+    addRoleModal.present();
   }
 
   viewRole(role) {
@@ -53,7 +54,19 @@ export class RolesPage {
 
     addGoalModal.onDidDismiss((goal) => {
       if (goal) {
-        this.dataService.saveGoal(goal);
+        this.dataService.createGoal(goal);
+      }
+    });
+
+    addGoalModal.present();
+  }
+
+  editGoal(role: Role, goal: Goal) {
+    let addGoalModal = this.modalCtrl.create(AddGoalPage, {goal: goal});
+
+    addGoalModal.onDidDismiss((goal) => {
+      if (goal) {
+        this.dataService.updateGoal(role, goal);
       }
     });
 

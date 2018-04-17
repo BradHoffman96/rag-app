@@ -22,17 +22,13 @@
         {{ role.title }}
       </ion-item>
  
-      <ion-list *ngIf="role.open" no-lines>
+      <ion-list *ngIf="role.open" no-lines inset>
         <!-- Second Level -->
         <ion-list-header *ngFor="let goal of goals | async" no-padding>
- 
           <!-- Direct Add Button as Fallback -->
-          <ion-item ion-item detail-none class="child-item" text-wrap>
+          <ion-item no-padding (click)="editGoal(role, goal)">
             <h2>{{ goal.title }}</h2>
-            
           </ion-item>
-          
- 
         </ion-list-header>
       </ion-list>
       

@@ -54,7 +54,7 @@ export class DataProvider {
     this.rolesList.remove(role.id);
   }
 
-  saveGoal(goal) {
+  createGoal(goal) {
     const ref = this.goalsList.push({});
     goal.id = ref.key;
     ref.set(goal);
@@ -66,6 +66,10 @@ export class DataProvider {
     this.goals = this.goalsList.valueChanges();
 
     return this.goals;
+  }
+
+  updateGoal(role: Role, goal: Goal) {
+    this.afDb.object(`${this.userId}/role/${role.id}/goals/${goal.id}`).update(goal);
   }
 
   deleteGoal(goal: Goal) {

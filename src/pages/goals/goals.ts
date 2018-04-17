@@ -31,7 +31,7 @@ export class GoalsPage {
 
     addGoalModal.onDidDismiss((goal) => {
       if (goal.priority && goal.title && goal.dueDate && goal.role) {
-        this.dataService.saveGoal(goal);
+        //this.dataService.saveGoal(goal);
       }
     });
 
