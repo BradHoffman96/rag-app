@@ -72,6 +72,10 @@ export class RolesPage {
 
     addGoalModal.present();
   }
+
+  deleteGoal(goal: Goal) {
+    this.dataService.deleteGoal(goal);
+  }
   
   getGoals(role: Role) {
     this.goals = this.dataService.getGoals(role);

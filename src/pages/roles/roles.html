@@ -23,13 +23,18 @@
       </ion-item>
  
       <ion-list *ngIf="role.open" no-lines inset>
-        <!-- Second Level -->
-        <ion-list-header *ngFor="let goal of goals | async" no-padding>
-          <!-- Direct Add Button as Fallback -->
+        <ion-item-sliding *ngFor="let goal of goals | async" no-padding>
           <ion-item no-padding (click)="editGoal(role, goal)">
-            <h2>{{ goal.title }}</h2>
+              <h2>{{ goal.title }}</h2>
           </ion-item>
-        </ion-list-header>
+          <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deleteGoal(role, goal)">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </button>
+
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
       
     </ion-list-header>
