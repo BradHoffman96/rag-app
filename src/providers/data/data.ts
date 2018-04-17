@@ -24,7 +24,8 @@ export class DataProvider {
   user: Observable<any[]>;
   userDetails: AngularFireList<any>;
   userId: string;
-  items: Observable<any[]>;
+  allGoals: Observable<any[]>;
+  allGoalsList: AngularFireList<any>;
 
   constructor(public storage: Storage, private afAuth: AngularFireAuth, public afDb: AngularFireDatabase) {
     this.afAuth.authState.subscribe(user => {
@@ -83,17 +84,11 @@ export class DataProvider {
   }
 
   getAllGoals() {
-    let goalIds = [];
-    this.roles.forEach(list => {
-      list.forEach(role => {
-        if (role.goals) {
-          Object.keys(role.goals).forEach(key => {
-            goalIds.push(key)
-          })
-        }
-      })
-    });
+    if (!this.userId) return;
+    this.allGoalsList = this.afDb.list(`${this.userId}/goals`);
+    this.allGoals = this.allGoalsList.valueChanges();
 
+    return this.allGoals;
   }
 
   updateGoal(role: Role, goal: Goal) {

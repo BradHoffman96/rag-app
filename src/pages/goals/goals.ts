@@ -14,15 +14,14 @@ export class GoalsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
 
-  goals: Goal[]
+  goals: Observable<any[]>;
 
   public sortedGoals = [];
 
   constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        console.log(this.dataService.getAllGoals());
-        //this.goals = this.dataService.getGoals();
+        this.goals = this.dataService.getAllGoals();
       }
     })
   }
