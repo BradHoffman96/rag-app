@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, ViewController} from 'ionic-angular';
+import {NavController, ViewController, NavParams} from 'ionic-angular';
 import { Role } from "../../shared/models/role";
 
 @Component({
@@ -24,12 +24,13 @@ export class AddRolePage {
 
   role = {} as Role;
 
-  constructor(public navCtrl: NavController, public view: ViewController) {
+  constructor(public navCtrl: NavController, public view: ViewController, private navParams: NavParams) {
+    if(this.navParams.get('role')) {
+      this.role = this.navParams.get('role');
+    }
   }
 
   addRole() {
-    this.role.priority = parseInt(this.selectedPriority, 10)
-
     this.view.dismiss(this.role);
   }
 

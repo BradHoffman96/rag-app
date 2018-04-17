@@ -4,5 +4,6 @@ export interface Role {
     id: string,
     title: string,
     priority: number,
-    goals: Goal[]
+    goals: Goal[],
+    open: boolean
 }

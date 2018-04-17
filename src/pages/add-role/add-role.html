@@ -23,7 +23,7 @@
     </ion-item>
     <ion-item id="addRole-range2">
       <ion-label>Priority</ion-label>
-      <ion-select [(ngModel)]="selectedPriority">
+      <ion-select [(ngModel)]="role.priority">
         <ion-option *ngFor="let priority of priorities" value="{{priority.value}}">{{priority.key}}</ion-option>
       </ion-select>
     </ion-item>

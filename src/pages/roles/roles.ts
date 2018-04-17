@@ -40,11 +40,19 @@ export class RolesPage {
     addRoleModal.present();
   }
 
-  viewRole(role) {
-    //Implement
+  editRole(role: Role) {
+    let addRoleModal = this.modalCtrl.create(AddRolePage, {role: role}); 
+
+    addRoleModal.onDidDismiss((role) => {
+      if (role) {
+        this.dataService.updateRole(role);
+      }
+    });
+
+    addRoleModal.present();
   }
 
-  deleteRole(role) {
+  deleteRole(role: Role) {
     console.log(role);
     this.dataService.deleteRole(role);
   }

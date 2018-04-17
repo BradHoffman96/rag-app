@@ -49,6 +49,11 @@ export class DataProvider {
 
     return this.roles;
   }
+
+  updateRole(role: Role) {
+    role.open = false;
+    this.afDb.object(`${this.userId}/roles/${role.id}`).update(role);
+  }
   
   deleteRole(role: Role) {
     this.rolesList.remove(role.id);
