@@ -11,21 +11,27 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page2">
-  <ion-list id="roles-list1">
-    <ion-item-sliding *ngFor="let role of roles | async">
-      <ion-item>
-        {{role.title}}
-      </ion-item>
-      <ion-item-options side="Right">
-        <button ion-button color="danger" (click)="deleteRole(role)">
-          Delete
-        </button>
-        <!--<button ion-button color="secondary">-->
-        <!--<ion-icon name="call"></ion-icon>-->
-        <!--Call-->
-        <!--</button>-->
-      </ion-item-options>
-    </ion-item-sliding>
-
+  <ion-list class="accordion-list">
+    <ion-list-header *ngFor="let role of roles | async; let i = index" no-lines no-padding>
+      <!-- Toggle Button -->
+      <button ion-item (click)="toggleSection(role)" detail-none [ngClass]="{'section-active': role.open, 'section': !role.open}">
+        <ion-icon item-left name="arrow-forward" *ngIf="!role.open"></ion-icon>
+        <ion-icon item-left name="arrow-down" *ngIf="role.open"></ion-icon>
+        {{ role.title }}
+      </button>
+ 
+      <ion-list *ngIf="role.open" no-lines>
+        <!-- Second Level -->
+        <ion-list-header *ngFor="let goal of role.goals; let j = index" no-padding>
+ 
+          <!-- Direct Add Button as Fallback -->
+          <ion-item ion-item detail-none class="child-item" text-wrap>
+            <h2>{{ goal.title }}</h2>
+          </ion-item>
+ 
+        </ion-list-header>
+      </ion-list>
+      
+    </ion-list-header>
   </ion-list>
 </ion-content>

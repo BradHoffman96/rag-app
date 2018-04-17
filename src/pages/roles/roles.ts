@@ -46,4 +46,9 @@ export class RolesPage {
     this.dataService.deleteRole(role);
   }
 
+  toggleSection(role) {
+    console.log(role)
+    role.open = !role.open;
+  }
+
 }
