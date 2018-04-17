@@ -57,11 +57,12 @@ export class RolesPage {
     this.dataService.deleteRole(role);
   }
 
-  addGoal() {
+  addGoal(role: Role) {
     let addGoalModal = this.modalCtrl.create(AddGoalPage);
 
     addGoalModal.onDidDismiss((goal) => {
       if (goal) {
+        goal.roleId = role.id;
         this.dataService.createGoal(goal);
       }
     });
@@ -86,11 +87,10 @@ export class RolesPage {
   }
   
   getGoals(role: Role) {
-    this.goals = this.dataService.getGoals(role);
+    this.goals = this.dataService.getGoalsforRole(role);
   }
 
   toggleSection(role) {
-    console.log(role)
     role.open = !role.open;
   }
 

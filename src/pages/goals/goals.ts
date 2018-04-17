@@ -4,6 +4,7 @@ import {AddGoalPage} from "../add-goal/add-goal";
 import {DataProvider} from "../../providers/data/data";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Observable } from "rxjs/observable";
+import { Goal } from '../../shared/models/goal';
 
 @Component({
   selector: 'page-goals',
@@ -13,14 +14,14 @@ export class GoalsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
 
-  goals: Observable<any[]>
+  goals: Goal[]
 
-  public roles = [];
   public sortedGoals = [];
 
   constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
+        console.log(this.dataService.getAllGoals());
         //this.goals = this.dataService.getGoals();
       }
     })

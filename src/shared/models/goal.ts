@@ -2,5 +2,6 @@ export interface Goal {
     id: string,
     title: string,
     dueDate: Date,
-    priority: number
+    priority: number,
+    roleId: string
 }

@@ -18,7 +18,7 @@
         <ion-icon item-left name="close" *ngIf="role.open" (click)="toggleSection(role)"></ion-icon>
         <ion-icon item-right name="trash" *ngIf="role.open" color="dark" (click)="deleteRole(role)" padding-right></ion-icon>
         <ion-icon item-right name="create" *ngIf="role.open" color="dark" (click)="editRole(role)"></ion-icon>
-        <ion-icon item-right name="add" *ngIf="role.open" color="dark" (click)="addGoal()" padding-left></ion-icon>
+        <ion-icon item-right name="add" *ngIf="role.open" color="dark" (click)="addGoal(role)" padding-left></ion-icon>
         {{ role.title }}
       </ion-item>
  
@@ -28,7 +28,7 @@
               <h2>{{ goal.title }}</h2>
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button color="danger" (click)="deleteGoal(role, goal)">
+            <button ion-button color="danger" (click)="deleteGoal(goal)">
               <ion-icon name="trash"></ion-icon>
               Delete
             </button>

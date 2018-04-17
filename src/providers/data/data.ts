@@ -24,6 +24,7 @@ export class DataProvider {
   user: Observable<any[]>;
   userDetails: AngularFireList<any>;
   userId: string;
+  items: Observable<any[]>;
 
   constructor(public storage: Storage, private afAuth: AngularFireAuth, public afDb: AngularFireDatabase) {
     this.afAuth.authState.subscribe(user => {
@@ -65,16 +66,38 @@ export class DataProvider {
     ref.set(goal);
   }
 
-  getGoals(role: Role) {
+  // getGoals() {
+  //   if (!this.userId) return;
+  //   this.goalsList = this.afDb.list(`${this.userId}/goals`);
+  //   this.goals = this.goalsList.valueChanges();
+
+  //   return this.goals;
+  // }
+
+  getGoalsforRole(role: Role) {
     if (!this.userId) return;
-    this.goalsList = this.afDb.list(`${this.userId}/roles/${role.id}/goals`);
+    this.goalsList = this.afDb.list(`${this.userId}/goals`, ref => ref.orderByChild('roleId').equalTo(role.id));
     this.goals = this.goalsList.valueChanges();
 
     return this.goals;
   }
 
+  getAllGoals() {
+    let goalIds = [];
+    this.roles.forEach(list => {
+      list.forEach(role => {
+        if (role.goals) {
+          Object.keys(role.goals).forEach(key => {
+            goalIds.push(key)
+          })
+        }
+      })
+    });
+
+  }
+
   updateGoal(role: Role, goal: Goal) {
-    this.afDb.object(`${this.userId}/role/${role.id}/goals/${goal.id}`).update(goal);
+    this.afDb.object(`${this.userId}/goals/${goal.id}`).update(goal);
   }
 
   deleteGoal(goal: Goal) {
