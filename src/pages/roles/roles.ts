@@ -29,7 +29,7 @@ export class RolesPage {
     let addRoleModal = this.modalCtrl.create(AddRolePage); 
 
     addRoleModal.onDidDismiss((role) => {
-      if (role.title && role.priority) {
+      if (role) {
         this.dataService.saveRole(role);
       }
     });
