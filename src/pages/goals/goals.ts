@@ -16,8 +16,7 @@ export class GoalsPage {
   // should be each tab's root Page
 
   goals: Observable<any[]>;
-
-  public sortedGoals = [];
+  sortType: string;
 
   constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth, public popoverCtrl: PopoverController) {
     this.afAuth.authState.subscribe(user => {
@@ -28,28 +27,19 @@ export class GoalsPage {
   }
 
   openOptions(ev) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: ev
+    let popover = this.popoverCtrl.create(PopoverPage, {
+      sortType: this.sortType
     });
-  }
-
-  addGoal() {
-    let addGoalModal = this.modalCtrl.create(AddGoalPage);
-
-    addGoalModal.onDidDismiss((goal) => {
-      if (goal.priority && goal.title && goal.dueDate && goal.role) {
-        //this.dataService.saveGoal(goal);
+    
+    popover.onDidDismiss((sortType) => {
+      if (!this.sortType) {
+        this.sortType = sortType;
       }
     });
 
-    addGoalModal.present();
-  }
-
-  deleteGoal(goal) {
-    console.log("DELETE GOAL");
-    console.log(goal);
-    this.dataService.deleteGoal(goal);
+    popover.present({
+      ev: ev
+    });
   }
 
   score(goal) {
