@@ -32,10 +32,7 @@ export class DataProvider {
       if (user) {
         this.userId = user.uid;
       }
-    })
-
-
-    //this.storage.clear();
+    });
   }
 
   createRole(role: Role) {
@@ -81,6 +78,14 @@ export class DataProvider {
     this.goals = this.goalsList.valueChanges();
 
     return this.goals;
+  }
+
+  getSortedGoals(sortType){
+    if (!this.userId) return;
+    this.allGoalsList = this.afDb.list(`${this.userId}/goals`, ref => ref.orderByChild(sortType));
+    this.allGoals = this.allGoalsList.valueChanges();
+
+    return this.allGoals;
   }
 
   getAllGoals() {

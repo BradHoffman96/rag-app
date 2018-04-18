@@ -12,15 +12,11 @@ import { PopoverController, NavParams, ViewController } from 'ionic-angular';
       </ion-item>
       <ion-item>
         <ion-label>Due Date</ion-label>
-        <ion-radio value="due-date" (click)="close()"></ion-radio>
+        <ion-radio value="date" (click)="close()"></ion-radio>
       </ion-item>
       <ion-item>
-        <ion-label>Largest Size</ion-label>
-        <ion-radio value="largest-size" (click)="close()"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Smallest Size</ion-label>
-        <ion-radio value="smallest-size" (click)="close()"></ion-radio>
+        <ion-label>Size</ion-label>
+        <ion-radio value="size" (click)="close()"></ion-radio>
       </ion-item>
     </ion-list>
   `

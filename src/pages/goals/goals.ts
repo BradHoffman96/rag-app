@@ -32,19 +32,14 @@ export class GoalsPage {
     });
     
     popover.onDidDismiss((sortType) => {
-      if (!this.sortType) {
+      if (sortType) {
         this.sortType = sortType;
         
-        if (sortType == "priority") {
-
-        } else if (sortType == "due-date") {
-
-        } else if (sortType == "smallest-size") {
-
-        } else if (sortType == "largest-size") {
+        if (sortType == "priority" || sortType == "size" || sortType == "date") {
+          this.goals = this.dataService.getSortedGoals(sortType);
+        } else if (sortType == "date") {
 
         }
-
       }
     });
 
