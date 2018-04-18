@@ -23,12 +23,18 @@
     </ion-item>
     <ion-item>
       <ion-label>Due Date</ion-label>
-      <ion-datetime displayFormat="MMM D, YYYY" [(ngModel)]="goal.dueDate"></ion-datetime>
+      <ion-datetime displayFormat="MMM D, YYYY" [(ngModel)]="goal.dueDate" min="2018-01-01" max="2050-01-01"></ion-datetime>
+    </ion-item>
+    <ion-item>
+        <ion-label>Size</ion-label>
+        <ion-select [(ngModel)]="goal.size">
+            <ion-option *ngFor="let size of sizes" [value]="size.value">{{size.key}}</ion-option>
+        </ion-select>
     </ion-item>
     <ion-item id="addGoal-range1">
       <ion-label>Priority</ion-label>
       <ion-select [(ngModel)]="goal.priority">
-        <ion-option *ngFor="let priority of priorities" value="{{priority.value}}">{{priority.key}}</ion-option>
+        <ion-option *ngFor="let priority of priorities" [value]="priority.value">{{priority.key}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>

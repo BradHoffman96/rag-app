@@ -34,6 +34,17 @@ export class GoalsPage {
     popover.onDidDismiss((sortType) => {
       if (!this.sortType) {
         this.sortType = sortType;
+        
+        if (sortType == "priority") {
+
+        } else if (sortType == "due-date") {
+
+        } else if (sortType == "smallest-size") {
+
+        } else if (sortType == "largest-size") {
+
+        }
+
       }
     });
 

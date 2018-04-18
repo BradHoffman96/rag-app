@@ -3,5 +3,6 @@ export interface Goal {
     title: string,
     dueDate: Date,
     priority: number,
+    size: number,
     roleId: string
 }

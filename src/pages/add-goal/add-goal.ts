@@ -15,6 +15,7 @@ export class AddGoalPage {
 
   goal = {} as Goal;
   roles: Observable<any[]>;
+  currentDate: string = new Date().toISOString();
 
   public priorities = [{
     key: "Low",
@@ -24,6 +25,17 @@ export class AddGoalPage {
     value: 2
   }, {
     key: "High",
+    value: 3
+  }];
+
+  public sizes = [{
+    key: "Small",
+    value: 1
+  }, {
+    key: "Med",
+    value: 2
+  }, {
+    key: "Large",
     value: 3
   }];
 
