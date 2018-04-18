@@ -21,6 +21,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from '../environments/environments';
 import { RegistrationPage } from '../pages/registration/registration';
+import { PopoverPage } from '../pages/popover/popover';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RegistrationPage } from '../pages/registration/registration';
     SignupPage,
     AddGoalPage,
     AddRolePage,
-    RegistrationPage
+    RegistrationPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { RegistrationPage } from '../pages/registration/registration';
     SignupPage,
     AddGoalPage,
     AddRolePage,
-    RegistrationPage
+    RegistrationPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,

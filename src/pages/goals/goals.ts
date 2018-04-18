@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import {ModalController} from 'ionic-angular';
+import {ModalController, PopoverController} from 'ionic-angular';
 import {AddGoalPage} from "../add-goal/add-goal";
 import {DataProvider} from "../../providers/data/data";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Observable } from "rxjs/observable";
 import { Goal } from '../../shared/models/goal';
+import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-goals',
@@ -18,12 +19,19 @@ export class GoalsPage {
 
   public sortedGoals = [];
 
-  constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth) {
+  constructor(public modalCtrl: ModalController, public dataService: DataProvider, private afAuth: AngularFireAuth, public popoverCtrl: PopoverController) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.goals = this.dataService.getAllGoals();
       }
     })
+  }
+
+  openOptions(ev) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: ev
+    });
   }
 
   addGoal() {
